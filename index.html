@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You're Welcome</title>
+
+  <meta property="og:title" content="You're Welcome" />
+  <meta property="og:description" content="You're welcome." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yw.skylinesmp.net" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="You're Welcome">
+  <meta name="twitter:description" content="You're welcome.">
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --text-color: #ffffff;
+      --accent: #a29bfe;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 50px 40px;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: fadeUp 1s ease forwards;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2em;
+      color: #ddd;
+    }
+
+    .signature {
+      font-size: 0.9rem;
+      color: #ccc;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 1em;
+      margin-top: 1.5em;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 40px 25px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>You're Welcome 😎</h1>
+    <p>Always happy to help. Keep being awesome!</p>
+    <div class="signature">
+      <div>Made with ❤️ by <span class="highlight">vyxzl</span></div>
+      <div>Founder @ <span class="highlight">Skyline SMP</span></div>
+    </div>
+  </div>
+</body>
+</html>
