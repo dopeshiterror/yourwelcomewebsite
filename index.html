@@ -10,6 +10,7 @@
       --glass-bg: rgba(255, 255, 255, 0.1);
       --text-color: #ffffff;
       --accent: #a29bfe;
+      --highlight-color: #f1c40f;
     }
 
     * {
@@ -42,7 +43,7 @@
       color: white;
       font-size: 1rem;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
       position: absolute;
       top: 20px;
@@ -54,6 +55,7 @@
 
     .circle-nav:hover {
       background: rgba(255,255,255,0.2);
+      transform: scale(1.05);
     }
 
     .circle-nav span {
@@ -127,12 +129,9 @@
 </head>
 <body>
 
-
-    <div class="circle-nav">
-        <a href="rate-us.html" style="text-decoration: none; color: inherit;">
-          Rate Us <span>⭐</span>
-        </a>
-      </div>      
+  <div class="circle-nav" onclick="window.location.href='rate-us.html';">
+    Rate Us <span>⭐</span>
+  </div>      
 
   <div class="card">
     <h1>You're Welcome 😎</h1>
