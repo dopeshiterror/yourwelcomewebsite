@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rate Us</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --text-color: #ffffff;
+      --accent: #a29bfe;
+      --highlight-color: #f1c40f;
+      --popup-bg: rgba(0, 0, 0, 0.8);
+      --popup-text-color: #fff;
+      --popup-border-radius: 15px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 60px;
+    }
+
+    .nav-bar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--glass-bg);
+      padding: 15px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-bar:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-bar i {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .nav-bar:hover i {
+      transform: translateX(-5px);
+      color: var(--highlight-color);
+    }
+
+    .nav-bar span {
+      font-size: 1rem;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .rate-container {
+      text-align: center;
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 50px 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .stars span {
+      font-size: 3rem;
+      color: #ddd;
+      transition: all 0.3s ease;
+      transform: scale(1);
+    }
+
+    .stars span:hover,
+    .stars span.active {
+      color: var(--highlight-color);
+      transform: scale(1.3);
+    }
+ 
+    
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--popup-bg);
+      color: var(--popup-text-color);
+      padding: 20px 40px;
+      border-radius: var(--popup-border-radius);
+      text-align: center;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .popup.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .popup p {
+      margin: 10px 0;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .popup .popup-close {
+      background: var(--highlight-color);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+
+    .popup .popup-close:hover {
+      background: #f39c12;
+    }
+
+    .popup .discord-name-input {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .popup input {
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background-color: rgba(255, 255, 255, 0.1);
+      font-size: 1rem;
+      color: #fff;
+      width: 100%;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .popup input:focus {
+      border: 1px solid var(--highlight-color);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .popup button {
+      background: var(--highlight-color);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    .popup button:hover {
+      background: #f39c12;
+    }
+
+
+    @media (max-width: 600px) {
+      .rate-container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .stars span {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav Bar (Go Back Button) -->
+  <div class="nav-bar" onclick="window.location.href='index.html';">
+    <i class="fa fa-arrow-left"></i>
+    <span>Go Back</span>
+  </div>
+
+  <div class="rate-container">
+    <h1>Rate Us ⭐</h1>
+    <div class="stars">
+      <span data-rating="1">★</span>
+      <span data-rating="2">★</span>
+      <span data-rating="3">★</span>
+      <span data-rating="4">★</span>
+      <span data-rating="5">★</span>
+    </div>
+    <div class="thank-you-message">We appreciate your feedback! 🌟</div>
+  </div>
+
+  <div class="popup" id="popup-notification">
+    <p>Thank you for your rating!</p>
+    <div class="discord-name-input">
+      <label for="discord-name">Enter your Discord Name:</label>
+      <input type="text" id="discord-name" placeholder="Your Discord name">
+      <button onclick="submitRating()">Submit</button>
+    </div>
+    <button class="popup-close" onclick="closePopup()">Close</button>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('.stars span');
+    const thankYouMessage = document.querySelector('.thank-you-message');
+    const popupNotification = document.getElementById('popup-notification');
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+      star.addEventListener('mouseover', () => {
+        stars.forEach(s => s.classList.remove('active'));
+        let currentRating = parseInt(star.getAttribute('data-rating'));
+        for (let i = 0; i < currentRating; i++) {
+          stars[i].classList.add('active');
+        }
+      });
+
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.getAttribute('data-rating'));
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < selectedRating; i++) {
+          stars[i].classList.add('active');
+        }
+        thankYouMessage.style.display = 'block';
+        showPopup("Thank you for your rating!");
+      });
+    });
+
+
+    function showPopup(message) {
+      const popupMessage = popupNotification.querySelector('p');
+      popupMessage.textContent = message;
+      popupNotification.classList.add('active');
+    }
+
+    function closePopup() {
+      popupNotification.classList.remove('active');
+    }
+
+    function submitRating() {
+      const discordName = document.getElementById('discord-name').value;
+
+      if (!discordName) {
+        alert("Discord name.");
+        return;
+      }
+
+
+      const webhookURL = 'https://discord.com/api/webhooks/1364027773743665182/f4T70b0qQT4ELvTuEGNh9tpLJnCg0Fz9NkHtkWhcGycFtXaz2ETZQD4arzMaJ9gYK-gJ';
+
+      const payload = {
+        content: `Rating received: ${selectedRating} stars\nDiscord Name: ${discordName}`
+      };
+
+      fetch(webhookURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => {
+        if (response.ok) {
+          showPopup("Thank you for your feedback! Your rating has been submitted.");
+        } else {
+          alert("Error sending feedback. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Error sending feedback:", error);
+        alert("Error sending feedback. Please try again.");
+      });
+    }
+  </script>
+
+</body>
+</html>
