@@ -4,16 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>You're Welcome</title>
-
-  <meta property="og:title" content="You're Welcome" />
-  <meta property="og:description" content="You're welcome." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yw.skylinesmp.net" />
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="You're Welcome">
-  <meta name="twitter:description" content="You're welcome.">
-
   <style>
     :root {
       --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
@@ -29,14 +19,45 @@
     }
 
     body {
-      height: 100vh;
       font-family: 'Poppins', sans-serif;
       background: var(--bg-gradient);
       color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 60px;
+    }
+
+    .circle-nav {
+      width: 200px;
+      height: 60px;
+      border-radius: 30px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .circle-nav:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .circle-nav span {
+      margin-left: 10px;
     }
 
     .card {
@@ -49,6 +70,7 @@
       animation: fadeUp 1s ease forwards;
       max-width: 500px;
       width: 100%;
+      margin-top: 60px;
     }
 
     h1 {
@@ -89,16 +111,29 @@
 
     @media (max-width: 600px) {
       .card {
-        padding: 40px 25px;
+        padding: 30px 20px;
       }
 
       h1 {
         font-size: 2.2rem;
       }
+
+      .circle-nav {
+        width: 180px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
+
+
+    <div class="circle-nav">
+        <a href="rate-us.html" style="text-decoration: none; color: inherit;">
+          Rate Us <span>⭐</span>
+        </a>
+      </div>      
+
   <div class="card">
     <h1>You're Welcome 😎</h1>
     <p>Always happy to help. Keep being awesome!</p>
@@ -107,5 +142,6 @@
       <div>Founder @ <span class="highlight">Skyline SMP</span></div>
     </div>
   </div>
+
 </body>
 </html>
